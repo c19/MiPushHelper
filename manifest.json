@@ -1,0 +1,27 @@
+{
+    "description": "批量设置小米推送",
+    "name": "小米推送助手",
+    "icons": { 
+        "16": "vendor/icon16.png",
+        "48": "vendor/icon48.png",
+        "128": "vendor/icon128.png",
+        "256": "vendor/icon256.png"
+    },
+    "page_action": {
+        "default_icon": "vendor/icon19.png",
+        "default_title": "小米推送助手"
+    },
+    "content_scripts": [{ 
+        "js": ["vendor/jQuery.js", "vendor/content.js"],
+        "matches": ["http://dev.xiaomi.com/*"],
+        "run_at": "document_end",
+        "all_frames": true
+    }],
+    "background": {
+        "scripts": ["vendor/background.js"]
+    },
+    "permissions": ["tabs", "http://*/*" ,"http://dev.xiaomi.com/*"],
+    "web_accessible_resources": ["vendor/background.js","vendor/jquery-2.0.3.min.map"],
+    "manifest_version": 2,
+    "version": "1.0"
+}
