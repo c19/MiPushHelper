@@ -59,8 +59,9 @@ $(document).ready(function () {
 			return [name, $(name).map(function(i, item){
 				if (item.type == "radio") {
 					return item.checked;
-				};
-				return item.value;
+				}else{
+					return item.value;
+				}
 			}).get()];
 		});
 	}
@@ -68,7 +69,11 @@ $(document).ready(function () {
 		console.log(settings);
 		settings.map(function(pair, index){
 			$(pair[0]).map(function(i, elem){
-				elem.value = pair[1][i];
+				if (elem.type == 'radio') {
+					elem.checked = pair[1][i];
+				}else{
+					elem.value = pair[1][i];
+				}
 			});
 		});
 	}
