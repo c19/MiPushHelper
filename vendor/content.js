@@ -1,6 +1,9 @@
 $(document).ready(function () {
 	var switchers = {
 		"init": function(){
+			// set default values
+			set_settings([["#is-always-notify-in-bar",[false]],[".notifytype_check",[true,true,true]],["#pushtype_select",["notify"]],["#is-always-notify-in-bar",[false]],["#notifytype_input",["7"]],["#pushTitle",[""]],["#pushContent",[""]],["select[name=notifyEffectType]",["1"]],["input[name=scheduledTime]",["0","0"]],["input[name=push-time-type]",[true,false,true,false]],["#flow-control-checkbox",[true]],["input[name=notifyId]",[""]]]);
+
 			$('body > div.main.myitems > div > div.android-container.push-container.ng-scope > form > div.control-group.mt26 > div')
 			.append("<button class='btn btn-large btn-success'>全部推送</button>");
 			$('body > div.main.myitems > div > div.android-container.push-container.ng-scope > form > div.control-group.mt26 > div > button.btn.btn-large.btn-success')
@@ -43,7 +46,9 @@ $(document).ready(function () {
 		}
 	};
 	function get_settings(){
-		var elems = [	"#pushtype_select",
+		var elems = [	"#is-always-notify-in-bar",
+						".notifytype_check",
+						"#pushtype_select",
 						"#is-always-notify-in-bar",
 						"#notifytype_input",
 						"#pushTitle",
@@ -57,7 +62,7 @@ $(document).ready(function () {
 						"input[name=notifyId]"];
 		return elems.map(function(name){
 			return [name, $(name).map(function(i, item){
-				if (item.type == "radio") {
+				if ("radio/checkbox".indexOf(item.type) > -1) {
 					return item.checked;
 				}else{
 					return item.value;
@@ -69,7 +74,7 @@ $(document).ready(function () {
 		console.log(settings);
 		settings.map(function(pair, index){
 			$(pair[0]).map(function(i, elem){
-				if (elem.type == 'radio') {
+				if ("radio/checkbox".indexOf(elem.type) > -1) {
 					elem.checked = pair[1][i];
 				}else{
 					elem.value = pair[1][i];
