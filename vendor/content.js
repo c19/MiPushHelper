@@ -10,7 +10,7 @@ $(document).ready(function () {
 			.click(function(event){
 				// save current settings
 				localStorage['settings'] = JSON.stringify(get_settings());
-				localStorage['sended'] = "com.luta.ks.mi/";
+				localStorage['sended'] = "com.luta.ks.mi/com.giu.lutainhouse";
 				// start sending
 				switchers['send']();
 
@@ -34,7 +34,7 @@ $(document).ready(function () {
 		"next": function(){
 			var remains = $('#min-con > ul > li > a').filter(function(i, elem){
 				var packageid = elem.href.match(/[^/]+/g)[6];
-				return localStorage['sended'].indexOf(packageid) == -1;
+				return localStorage['sended'].indexOf(packageid) == -1; // && "com.xiaomi.mipushdemo/com.giu.rekoo.luta.rk".indexOf(packageid) > -1;
 			});
 			if (remains.length){
 				localStorage['action'] = 'send';
