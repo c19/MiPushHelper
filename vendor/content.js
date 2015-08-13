@@ -10,7 +10,7 @@ $(document).ready(function () {
 			.click(function(event){
 				// save current settings
 				localStorage['settings'] = JSON.stringify(get_settings());
-				localStorage['sended'] = "com.luta.ks.mi/com.giu.lutainhouse";
+				localStorage['sended'] = "com.luta.ks.mi/com.giu.lutainhouse/com.rekoo.luta";
 				// start sending
 				switchers['send']();
 
