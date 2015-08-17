@@ -2,7 +2,7 @@ $(document).ready(function () {
 	var switchers = {
 		"init": function(){
 			// set default values
-			set_settings([["#is-always-notify-in-bar",[false]],[".notifytype_check",[true,true,true]],["#pushtype_select",["notify"]],["#is-always-notify-in-bar",[false]],["#notifytype_input",["7"]],["#pushTitle",[""]],["#pushContent",[""]],["select[name=notifyEffectType]",["1"]],["input[name=scheduledTime]",["0","0"]],["input[name=push-time-type]",[true,false,true,false]],["#flow-control-checkbox",[true]],["input[name=notifyId]",[""]]]);
+			set_settings([["#is-always-notify-in-bar",[false]],[".notifytype_check",[true,true,true]],["#pushtype_select",["notify"]],["#is-always-notify-in-bar",[false]],["#notifytype_input",["7"]],["#pushTitle",[""]],["#pushContent",[""]],["select[name=notifyEffectType]",["1"]],["input[name=scheduledTime]",["0","0"]],["input[name=push-time-type]",[true,false,true,false]],["#flow-control-checkbox",[true]],["input[name=notifyId]",[""]],["input[name=apitype_select]",[false,false,true,false,false,false,true,false,false,false,false,false]]]);
 
 			$('body > div.main.myitems > div > div.android-container.push-container.ng-scope > form > div.control-group.mt26 > div')
 			.append("<button class='btn btn-large btn-success'>全部推送</button>");
@@ -59,7 +59,8 @@ $(document).ready(function () {
 						"input[name=push-time-type]",
 						".expires-datepicker-input",
 						"#flow-control-checkbox",
-						"input[name=notifyId]"];
+						"input[name=notifyId]",
+						"input[name=apitype_select]"];
 		return elems.map(function(name){
 			return [name, $(name).map(function(i, item){
 				if ("radio/checkbox".indexOf(item.type) > -1) {
