@@ -33,7 +33,7 @@ $(document).ready(function () {
 		"next": function(){
 			var remains = $('#min-con > ul > li > a').filter(function(i, elem){
 				var packageid = elem.href.match(/[^/]+/g)[6];
-				return localStorage['sended'].indexOf(packageid) == -1; // && "com.xiaomi.mipushdemo".indexOf(packageid) > -1;
+				return localStorage['sended'].indexOf(packageid) == -1 && elem.text.includes('Android 已启用') ;
 			});
 			if (remains.length){
 				localStorage['action'] = 'send';
