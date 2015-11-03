@@ -4,16 +4,24 @@ $(document).ready(function () {
 			// set default values
 			set_default();
 			$('body > div.main.myitems > div > div.android-container.push-container.ng-scope > form > div.control-group.mt26 > div')
-			.append("<button class='btn btn-large btn-success'>全部推送</button>");
-			$('body > div.main.myitems > div > div.android-container.push-container.ng-scope > form > div.control-group.mt26 > div > button.btn.btn-large.btn-success')
-			.click(function(event){
+			.append("<button id='mainland_pushall' class='btn btn-large btn-success'>大陆安卓全部推送</button>");
+			$('body > div.main.myitems > div > div.android-container.push-container.ng-scope > form > div.control-group.mt26 > div')
+			.append("<button id='taiwan_pushall' class='btn btn-large btn-primary'>台湾安卓全部推送</button>");
+			$('#taiwan_pushall').click(function(event){
+				start("com.funapps.tw.cszj/com.funapps.tw.cszjapk");
+			});
+			$('#mainland_pushall').click(function(event){
+				start("com.giu.rekoo.luta.anqu/com.giu.rekoo.luta.mcszj/com.giu.rekoo.luta.xunlei/com.giu.rekoo.luta.ihiyo/com.giu.rekoo.luta.tanzi/com.giu.rekoo.luta.qifan/com.giu.rekoo.bf_2015/com.giu.rekoo.qike/com.giu.rekoo.luta.chongchong/com.giu.rekoo.luta.guchuan/com.giu.rekoo.luta.jrtt/com.giu.rekoo.luta.ad.xy/com.giu.rekoo.luta.kugou/com.giu.rekoo.luta.ad.itools/com.giu.rekoo.luta.pptv/com.giu.rekoo.luta.kaopu/com.giu.rekoo.luta.wyx/com.luta.mi/com.giu.rekoo.luta.ouwan/com.giu.rekoo.luta.m7xz/com.giu.rekoo.luta.7xz/com.giu.rekoo.luta.leshi/com.giu.rekoo.luta.mz/com.giu.rekoo.luta.mgw/com.giu.rekoo.luta.guopan/com.giu.rekoo.luta.youlong/com.giu.rekoo.luta.lewan/com.giu.rekoo.luta.douyu/com.luta.ks.mi/com.giu.rekoo.luta.gfan/com.giu.rekoo.luta.sy37/com.giu.rekoo.luta.ad.haima/com.giu.rekoo.luta.youku/com.giu.rekoo.luta.xcs/com.giu.rekoo.luta.htc/com.giu.rekoo.luta.ewan/com.giu.rekoo.luta.paojiao/com.giu.rekoo.luta.sj49you/com.giu.rekoo.luta.ad.shuyou/com.giu.rekoo.luta.yyw/com.giu.rekoo.luta.dianhun/com.giu.rekoo.luta.yy/com.test.test/com.rekoo.luta/com.giu.rekoo.luta.ppw/com.giu.rekoo.luta.sina/com.giu.rekoo.luta.nduo/com.giu.rekoo.luta.nearme.yyh/com.giu.rekoo.luta.pps/com.giu.rekoo.luta.mumayi/com.giu.rekoo.luta.sogou/com.giu.rekoo.luta.muzhiwan/com.giu.rekoo.luta.anzhi/com.giu.rekoo.luta.wdj/com.giu.rekoo.luta.dl/com.giu.rekoo.luta.4399/com.giu.rekoo.luta.vivo/com.giu.rekoo.luta.coolpad/com.giu.rekoo.luta.am/com.giu.rekoo.luta.lenovo/com.giu.rekoo.luta.huawei/com.giu.rekoo.luta.nearme.gamecenter/com.giu.rekoo.luta.mi/com.giu.rekoo.luta.qh/com.giu.rekoo.luta.bd/com.giu.rekoo.luta.uc/com.giu.lutainhouse/com.xiaomi.mipushdemo/com.giu.rekoo.luta.rk");
+			});
+			function start(target_ids){
+				localStorage['target_ids'] = target_ids;
 				// save current settings
 				localStorage['settings'] = JSON.stringify(get_settings());
 				localStorage['sended'] = "com.luta.ks.mi/com.giu.lutainhouse/com.rekoo.luta";
 				// start sending
-				switchers['send']();
-
-			});
+				localStorage['action'] = 'next';
+				window.location.href = "http://dev.xiaomi.com/mipush/xmpush/app/applist";
+			}
 		},
 		"send": function(){
 			set_settings(JSON.parse(localStorage['settings']));
@@ -33,7 +41,7 @@ $(document).ready(function () {
 		"next": function(){
 			var remains = $('#min-con > ul > li > a').filter(function(i, elem){
 				var packageid = elem.href.match(/[^/]+/g)[6];
-				return localStorage['sended'].indexOf(packageid) == -1 && elem.text.includes('Android 已启用') ;
+				return !localStorage['sended'].includes(packageid) && localStorage['target_ids'].includes(packageid);
 			});
 			if (remains.length){
 				localStorage['action'] = 'send';
